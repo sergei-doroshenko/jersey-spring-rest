@@ -1,0 +1,1 @@
+Example of REST web service powered by Jersey and Spring
