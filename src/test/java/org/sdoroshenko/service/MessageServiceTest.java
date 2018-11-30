@@ -6,17 +6,15 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.*;
-
-@ContextConfiguration(locations = {"classpath:application-context.xml"})
-public class SimpleServiceTest extends AbstractTestNGSpringContextTests {
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+public class MessageServiceTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
-    SimpleService simpleService;
+    MessageService simpleService;
 
     @Test
     public void getName() {
-        String name = simpleService.getName();
-        Assert.assertEquals(name, "jersey-spring-rest");
+        String name = simpleService.getGreetingMessage();
+        Assert.assertEquals(name, "application");
     }
 }

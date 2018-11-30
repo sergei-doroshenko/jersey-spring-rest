@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
-public class SimpleResourceTest {
+public class MessageResourceTest {
     private HttpServer server;
     private WebTarget target;
 
@@ -28,11 +28,14 @@ public class SimpleResourceTest {
     }
 
     /**
-     * Test to see that the message "Got it!" is sent in the response.
+     * Test to see that the message "application" is sent in the response.
      */
     @Test
     public void getIt() {
-        String responseMsg = target.path("simpleResource").request().get(String.class);
-        assertEquals( responseMsg, "Got it!");
+        String responseMsg = target.path("messageResource")
+            .queryParam("name", "Sergei")
+            .request()
+            .get(String.class);
+        assertEquals( responseMsg, "application Sergei");
     }
 }
