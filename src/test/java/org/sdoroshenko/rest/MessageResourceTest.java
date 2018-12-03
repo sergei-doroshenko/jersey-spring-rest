@@ -1,28 +1,28 @@
 package org.sdoroshenko.rest;
 
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class MessageResourceTest {
     private HttpServer server;
     private WebTarget target;
 
-    @BeforeMethod
+    @BeforeClass
     public void setUp() {
         server = Main.startServer();
         Client client = ClientBuilder.newClient();
         target = client.target(Main.BASE_URI);
     }
 
-    @AfterMethod
+    @AfterClass
     public void tearDown() {
         server.stop();
     }
@@ -36,6 +36,6 @@ public class MessageResourceTest {
             .queryParam("name", "Sergei")
             .request()
             .get(String.class);
-        assertEquals( responseMsg, "application Sergei");
+        assertEquals( responseMsg, "jersey-spring-rest Sergei");
     }
 }

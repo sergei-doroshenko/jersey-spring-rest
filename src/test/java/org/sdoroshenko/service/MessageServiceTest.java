@@ -12,9 +12,15 @@ public class MessageServiceTest extends AbstractTestNGSpringContextTests {
     @Autowired
     MessageService simpleService;
 
+    /**
+     * We defined two property configurers in Spring context.
+     * {@link org.springframework.beans.factory.config.PropertyPlaceholderConfigurer} works first,
+     * then properties overridden by {@link org.springframework.beans.factory.config.PropertyOverrideConfigurer}.
+     * @see "applicationContext.xml"
+     */
     @Test
     public void getName() {
         String name = simpleService.getGreetingMessage();
-        Assert.assertEquals(name, "application");
+        Assert.assertEquals(name, "jersey-spring-rest");
     }
 }
